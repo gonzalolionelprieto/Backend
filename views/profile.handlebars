@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Perfil de Usuario</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f7f7f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 40px;
+      color: #333;
+    }
+
+    .profile-card {
+      position: relative;
+      max-width: 400px;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      animation: fade-in 0.5s ease;
+      text-align: center;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .profile-card p {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    .profile-card p strong {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .settings-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .settings-button .dot {
+      width: 4px;
+      height: 4px;
+      background-color: #333;
+      border-radius: 50%;
+      margin-bottom: 4px;
+    }
+
+    .settings-button .dot:last-child {
+      margin-bottom: 0;
+    }
+
+    .settings-menu {
+      position: absolute;
+      top: 30px;
+      right: 10px;
+      width: 150px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 10px 0;
+      display: none;
+      z-index: 1;
+    }
+
+    .settings-menu.show {
+      display: block;
+    }
+
+    .settings-menu-item {
+      padding: 8px 16px;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .settings-menu-item:hover {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+    <h1>Perfil de Usuario</h1>
+    <p><strong>Nombre:</strong> {{first_name}} {{last_name}}</p>
+    <p><strong>Correo electrónico:</strong> {{email}}</p>
+    <p><strong>Edad:</strong> {{age}}</p>
+    <button class="settings-button" onclick="toggleSettingsMenu()">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </button>
+    <div class="settings-menu" id="settingsMenu">
+      <form action="/api/sessions/logout" method="post">
+  
+      <input class="settings-menu-item" type="submit" value="logout">
+    </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleSettingsMenu() {
+      var settingsMenu = document.getElementById('settingsMenu');
+      settingsMenu.classList.toggle('show');
+    }
+
+    function logout() {
+      // Lógica para realizar el logout
+      alert('Logout realizado correctamente.');
+    }
+  </script>
+</body>
+</html>
